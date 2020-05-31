@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadCreateDlg" widgetVar="UnidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateUnidadTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadCreateForm">
+
+                <h:panelGroup id="display" rendered="#{unidadController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateUnidadLabel_unNombre}" for="unNombre" />
+                        <p:inputText id="unNombre" value="#{unidadController.selected.unNombre}" title="#{myBundle.CreateUnidadTitle_unNombre}" required="true" requiredMessage="#{myBundle.CreateUnidadRequiredMessage_unNombre}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUnidadLabel_unDireccion}" for="unDireccion" />
+                        <p:inputText id="unDireccion" value="#{unidadController.selected.unDireccion}" title="#{myBundle.CreateUnidadTitle_unDireccion}" required="true" requiredMessage="#{myBundle.CreateUnidadRequiredMessage_unDireccion}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUnidadLabel_unPeriodo}" for="unPeriodo" />
+                        <p:inputText id="unPeriodo" value="#{unidadController.selected.unPeriodo}" title="#{myBundle.CreateUnidadTitle_unPeriodo}" required="true" requiredMessage="#{myBundle.CreateUnidadRequiredMessage_unPeriodo}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUnidadLabel_unTelef}" for="unTelef" />
+                        <p:inputText id="unTelef" value="#{unidadController.selected.unTelef}" title="#{myBundle.CreateUnidadTitle_unTelef}" size="10" maxlength="10"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unidadController.saveNew}" value="#{myBundle.Save}" update="display,:UnidadListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UnidadCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('UnidadCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

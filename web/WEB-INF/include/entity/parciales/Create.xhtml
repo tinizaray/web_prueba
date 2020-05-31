@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ParcialesCreateDlg" widgetVar="ParcialesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateParcialesTitle}" closeOnEscape="true">
+
+            <h:form id="ParcialesCreateForm">
+
+                <h:panelGroup id="display" rendered="#{parcialesController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateParcialesLabel_paId}" for="paId" />
+                        <p:inputText id="paId" value="#{parcialesController.selected.paId}" title="#{myBundle.CreateParcialesTitle_paId}" required="true" requiredMessage="#{myBundle.CreateParcialesRequiredMessage_paId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateParcialesLabel_paNombres}" for="paNombres" />
+                        <p:inputText id="paNombres" value="#{parcialesController.selected.paNombres}" title="#{myBundle.CreateParcialesTitle_paNombres}" size="45" maxlength="45"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{parcialesController.saveNew}" value="#{myBundle.Save}" update="display,:ParcialesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ParcialesCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ParcialesCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

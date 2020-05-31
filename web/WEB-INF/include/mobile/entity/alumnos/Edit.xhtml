@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="AlumnosEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditAlumnosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:AlumnosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="AlumnosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{alumnosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditAlumnosLabel_alId}" for="alId" />
+                            <h:outputText id="alId" value="#{alumnosController.selected.alId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAlumnosLabel_alNombres}" for="alNombres" />
+                            <p:inputText id="alNombres" value="#{alumnosController.selected.alNombres}" title="#{myBundle.EditAlumnosTitle_alNombres}" required="true" requiredMessage="#{myBundle.EditAlumnosRequiredMessage_alNombres}" size="70" maxlength="70"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAlumnosLabel_alApellidos}" for="alApellidos" />
+                            <p:inputText id="alApellidos" value="#{alumnosController.selected.alApellidos}" title="#{myBundle.EditAlumnosTitle_alApellidos}" required="true" requiredMessage="#{myBundle.EditAlumnosRequiredMessage_alApellidos}" size="70" maxlength="70"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAlumnosLabel_alCedula}" for="alCedula" />
+                            <p:inputText id="alCedula" value="#{alumnosController.selected.alCedula}" title="#{myBundle.EditAlumnosTitle_alCedula}" size="10" maxlength="10"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAlumnosLabel_alDir}" for="alDir" />
+                            <p:inputText id="alDir" value="#{alumnosController.selected.alDir}" title="#{myBundle.EditAlumnosTitle_alDir}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAlumnosLabel_alMobil}" for="alMobil" />
+                            <p:inputText id="alMobil" value="#{alumnosController.selected.alMobil}" title="#{myBundle.EditAlumnosTitle_alMobil}" required="true" requiredMessage="#{myBundle.EditAlumnosRequiredMessage_alMobil}" size="10" maxlength="10"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditAlumnosLabel_alRep}" for="alRep" />
+                            <p:inputText id="alRep" value="#{alumnosController.selected.alRep}" title="#{myBundle.EditAlumnosTitle_alRep}" required="true" requiredMessage="#{myBundle.EditAlumnosRequiredMessage_alRep}" size="10" maxlength="10"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{alumnosController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:AlumnosListPage:AlumnosListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:AlumnosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

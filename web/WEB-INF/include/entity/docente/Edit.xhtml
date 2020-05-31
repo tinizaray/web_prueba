@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DocenteEditDlg" widgetVar="DocenteEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditDocenteTitle}" closeOnEscape="true">
+
+            <h:form id="DocenteEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{docenteController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditDocenteLabel_doId}" for="doId" />
+                        <h:outputText id="doId" value="#{docenteController.selected.doId}" />
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doCedula}" for="doCedula" />
+                        <p:inputText id="doCedula" value="#{docenteController.selected.doCedula}" title="#{myBundle.EditDocenteTitle_doCedula}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doCedula}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doNombres}" for="doNombres" />
+                        <p:inputText id="doNombres" value="#{docenteController.selected.doNombres}" title="#{myBundle.EditDocenteTitle_doNombres}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doNombres}" size="75" maxlength="75"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doApellidos}" for="doApellidos" />
+                        <p:inputText id="doApellidos" value="#{docenteController.selected.doApellidos}" title="#{myBundle.EditDocenteTitle_doApellidos}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doApellidos}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doProv}" for="doProv" />
+                        <p:inputText id="doProv" value="#{docenteController.selected.doProv}" title="#{myBundle.EditDocenteTitle_doProv}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doProv}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doCiudad}" for="doCiudad" />
+                        <p:inputText id="doCiudad" value="#{docenteController.selected.doCiudad}" title="#{myBundle.EditDocenteTitle_doCiudad}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doCiudad}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doDirec}" for="doDirec" />
+                        <p:inputText id="doDirec" value="#{docenteController.selected.doDirec}" title="#{myBundle.EditDocenteTitle_doDirec}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doDirec}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doTelef}" for="doTelef" />
+                        <p:inputText id="doTelef" value="#{docenteController.selected.doTelef}" title="#{myBundle.EditDocenteTitle_doTelef}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doMobil}" for="doMobil" />
+                        <p:inputText id="doMobil" value="#{docenteController.selected.doMobil}" title="#{myBundle.EditDocenteTitle_doMobil}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doMobil}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doUsu}" for="doUsu" />
+                        <p:inputText id="doUsu" value="#{docenteController.selected.doUsu}" title="#{myBundle.EditDocenteTitle_doUsu}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doUsu}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doPass}" for="doPass" />
+                        <p:inputText id="doPass" value="#{docenteController.selected.doPass}" title="#{myBundle.EditDocenteTitle_doPass}" required="true" requiredMessage="#{myBundle.EditDocenteRequiredMessage_doPass}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.EditDocenteLabel_doColegio}" for="doColegio" />
+                        <p:inputText id="doColegio" value="#{docenteController.selected.doColegio}" title="#{myBundle.EditDocenteTitle_doColegio}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{docenteController.save}" value="#{myBundle.Save}" update="display,:DocenteListForm:datalist,:DocenteListForm:DocenteDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('DocenteEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('DocenteEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UnidadEditDlg" widgetVar="UnidadEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditUnidadTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{unidadController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditUnidadLabel_unId}" for="unId" />
+                        <h:outputText id="unId" value="#{unidadController.selected.unId}" />
+
+                        <p:outputLabel value="#{myBundle.EditUnidadLabel_unNombre}" for="unNombre" />
+                        <p:inputText id="unNombre" value="#{unidadController.selected.unNombre}" title="#{myBundle.EditUnidadTitle_unNombre}" required="true" requiredMessage="#{myBundle.EditUnidadRequiredMessage_unNombre}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditUnidadLabel_unDireccion}" for="unDireccion" />
+                        <p:inputText id="unDireccion" value="#{unidadController.selected.unDireccion}" title="#{myBundle.EditUnidadTitle_unDireccion}" required="true" requiredMessage="#{myBundle.EditUnidadRequiredMessage_unDireccion}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.EditUnidadLabel_unPeriodo}" for="unPeriodo" />
+                        <p:inputText id="unPeriodo" value="#{unidadController.selected.unPeriodo}" title="#{myBundle.EditUnidadTitle_unPeriodo}" required="true" requiredMessage="#{myBundle.EditUnidadRequiredMessage_unPeriodo}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditUnidadLabel_unTelef}" for="unTelef" />
+                        <p:inputText id="unTelef" value="#{unidadController.selected.unTelef}" title="#{myBundle.EditUnidadTitle_unTelef}" size="10" maxlength="10"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unidadController.save}" value="#{myBundle.Save}" update="display,:UnidadListForm:datalist,:UnidadListForm:UnidadDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UnidadEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('UnidadEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

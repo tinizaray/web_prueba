@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UnidadCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateUnidadTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UnidadListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UnidadCreateForm">
+
+                <h:panelGroup id="display" rendered="#{unidadController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUnidadLabel_unNombre}" for="unNombre" />
+                            <p:inputText id="unNombre" value="#{unidadController.selected.unNombre}" title="#{myBundle.CreateUnidadTitle_unNombre}" required="true" requiredMessage="#{myBundle.CreateUnidadRequiredMessage_unNombre}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUnidadLabel_unDireccion}" for="unDireccion" />
+                            <p:inputText id="unDireccion" value="#{unidadController.selected.unDireccion}" title="#{myBundle.CreateUnidadTitle_unDireccion}" required="true" requiredMessage="#{myBundle.CreateUnidadRequiredMessage_unDireccion}" size="100" maxlength="100"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUnidadLabel_unPeriodo}" for="unPeriodo" />
+                            <p:inputText id="unPeriodo" value="#{unidadController.selected.unPeriodo}" title="#{myBundle.CreateUnidadTitle_unPeriodo}" required="true" requiredMessage="#{myBundle.CreateUnidadRequiredMessage_unPeriodo}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUnidadLabel_unTelef}" for="unTelef" />
+                            <p:inputText id="unTelef" value="#{unidadController.selected.unTelef}" title="#{myBundle.CreateUnidadTitle_unTelef}" size="10" maxlength="10"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{unidadController.saveNew}" value="#{myBundle.Save}" update="display,:UnidadListPage:UnidadListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:UnidadListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

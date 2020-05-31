@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="RegistroViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewRegistroTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:RegistroListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="RegistroViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{registroController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_reId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.reId}" title="#{myBundle.ViewRegistroTitle_registroPK_reId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_maId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.maId}" title="#{myBundle.ViewRegistroTitle_registroPK_maId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_alId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.alId}" title="#{myBundle.ViewRegistroTitle_registroPK_alId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_curId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.curId}" title="#{myBundle.ViewRegistroTitle_registroPK_curId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_unId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.unId}" title="#{myBundle.ViewRegistroTitle_registroPK_unId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_doId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.doId}" title="#{myBundle.ViewRegistroTitle_registroPK_doId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_quiId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.quiId}" title="#{myBundle.ViewRegistroTitle_registroPK_quiId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_paId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.paId}" title="#{myBundle.ViewRegistroTitle_registroPK_paId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_registroPK_inId}"/>
+                            <h:outputText value="#{registroController.selected.registroPK.inId}" title="#{myBundle.ViewRegistroTitle_registroPK_inId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_reNota}"/>
+                            <h:outputText value="#{registroController.selected.reNota}" title="#{myBundle.ViewRegistroTitle_reNota}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_alumnos}"/>
+                            <h:outputText value="#{registroController.selected.alumnos.alId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_curso}"/>
+                            <h:outputText value="#{registroController.selected.curso.curId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_docente}"/>
+                            <h:outputText value="#{registroController.selected.docente.doId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_insumos}"/>
+                            <h:outputText value="#{registroController.selected.insumos.inId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_materias}"/>
+                            <h:outputText value="#{registroController.selected.materias.maId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_parciales}"/>
+                            <h:outputText value="#{registroController.selected.parciales.paId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_quimestre}"/>
+                            <h:outputText value="#{registroController.selected.quimestre.quiId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewRegistroLabel_unidad}"/>
+                            <h:outputText value="#{registroController.selected.unidad.unId}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

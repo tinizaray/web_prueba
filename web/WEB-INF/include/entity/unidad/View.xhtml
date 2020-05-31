@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadViewDlg" widgetVar="UnidadViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewUnidadTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{unidadController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewUnidadLabel_unId}"/>
+                        <h:outputText value="#{unidadController.selected.unId}" title="#{myBundle.ViewUnidadTitle_unId}"/>
+
+                        <h:outputText value="#{myBundle.ViewUnidadLabel_unNombre}"/>
+                        <h:outputText value="#{unidadController.selected.unNombre}" title="#{myBundle.ViewUnidadTitle_unNombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewUnidadLabel_unDireccion}"/>
+                        <h:outputText value="#{unidadController.selected.unDireccion}" title="#{myBundle.ViewUnidadTitle_unDireccion}"/>
+
+                        <h:outputText value="#{myBundle.ViewUnidadLabel_unPeriodo}"/>
+                        <h:outputText value="#{unidadController.selected.unPeriodo}" title="#{myBundle.ViewUnidadTitle_unPeriodo}"/>
+
+                        <h:outputText value="#{myBundle.ViewUnidadLabel_unTelef}"/>
+                        <h:outputText value="#{unidadController.selected.unTelef}" title="#{myBundle.ViewUnidadTitle_unTelef}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('UnidadViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="MateriasViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewMateriasTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:MateriasListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="MateriasViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{materiasController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMateriasLabel_maId}"/>
+                            <h:outputText value="#{materiasController.selected.maId}" title="#{myBundle.ViewMateriasTitle_maId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMateriasLabel_maNombre}"/>
+                            <h:outputText value="#{materiasController.selected.maNombre}" title="#{myBundle.ViewMateriasTitle_maNombre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMateriasLabel_maParalelo}"/>
+                            <h:outputText value="#{materiasController.selected.maParalelo}" title="#{myBundle.ViewMateriasTitle_maParalelo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewMateriasLabel_maEsp}"/>
+                            <h:outputText value="#{materiasController.selected.maEsp}" title="#{myBundle.ViewMateriasTitle_maEsp}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

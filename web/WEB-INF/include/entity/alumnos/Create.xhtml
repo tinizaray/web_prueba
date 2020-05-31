@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnosCreateDlg" widgetVar="AlumnosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateAlumnosTitle}" closeOnEscape="true">
+
+            <h:form id="AlumnosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{alumnosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateAlumnosLabel_alNombres}" for="alNombres" />
+                        <p:inputText id="alNombres" value="#{alumnosController.selected.alNombres}" title="#{myBundle.CreateAlumnosTitle_alNombres}" required="true" requiredMessage="#{myBundle.CreateAlumnosRequiredMessage_alNombres}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAlumnosLabel_alApellidos}" for="alApellidos" />
+                        <p:inputText id="alApellidos" value="#{alumnosController.selected.alApellidos}" title="#{myBundle.CreateAlumnosTitle_alApellidos}" required="true" requiredMessage="#{myBundle.CreateAlumnosRequiredMessage_alApellidos}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAlumnosLabel_alCedula}" for="alCedula" />
+                        <p:inputText id="alCedula" value="#{alumnosController.selected.alCedula}" title="#{myBundle.CreateAlumnosTitle_alCedula}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAlumnosLabel_alDir}" for="alDir" />
+                        <p:inputText id="alDir" value="#{alumnosController.selected.alDir}" title="#{myBundle.CreateAlumnosTitle_alDir}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAlumnosLabel_alMobil}" for="alMobil" />
+                        <p:inputText id="alMobil" value="#{alumnosController.selected.alMobil}" title="#{myBundle.CreateAlumnosTitle_alMobil}" required="true" requiredMessage="#{myBundle.CreateAlumnosRequiredMessage_alMobil}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAlumnosLabel_alRep}" for="alRep" />
+                        <p:inputText id="alRep" value="#{alumnosController.selected.alRep}" title="#{myBundle.CreateAlumnosTitle_alRep}" required="true" requiredMessage="#{myBundle.CreateAlumnosRequiredMessage_alRep}" size="10" maxlength="10"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alumnosController.saveNew}" value="#{myBundle.Save}" update="display,:AlumnosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('AlumnosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('AlumnosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

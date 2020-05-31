@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="DocenteViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewDocenteTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:DocenteListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="DocenteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{docenteController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doId}"/>
+                            <h:outputText value="#{docenteController.selected.doId}" title="#{myBundle.ViewDocenteTitle_doId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doCedula}"/>
+                            <h:outputText value="#{docenteController.selected.doCedula}" title="#{myBundle.ViewDocenteTitle_doCedula}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doNombres}"/>
+                            <h:outputText value="#{docenteController.selected.doNombres}" title="#{myBundle.ViewDocenteTitle_doNombres}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doApellidos}"/>
+                            <h:outputText value="#{docenteController.selected.doApellidos}" title="#{myBundle.ViewDocenteTitle_doApellidos}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doProv}"/>
+                            <h:outputText value="#{docenteController.selected.doProv}" title="#{myBundle.ViewDocenteTitle_doProv}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doCiudad}"/>
+                            <h:outputText value="#{docenteController.selected.doCiudad}" title="#{myBundle.ViewDocenteTitle_doCiudad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doDirec}"/>
+                            <h:outputText value="#{docenteController.selected.doDirec}" title="#{myBundle.ViewDocenteTitle_doDirec}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doTelef}"/>
+                            <h:outputText value="#{docenteController.selected.doTelef}" title="#{myBundle.ViewDocenteTitle_doTelef}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doMobil}"/>
+                            <h:outputText value="#{docenteController.selected.doMobil}" title="#{myBundle.ViewDocenteTitle_doMobil}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doUsu}"/>
+                            <h:outputText value="#{docenteController.selected.doUsu}" title="#{myBundle.ViewDocenteTitle_doUsu}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doPass}"/>
+                            <h:outputText value="#{docenteController.selected.doPass}" title="#{myBundle.ViewDocenteTitle_doPass}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewDocenteLabel_doColegio}"/>
+                            <h:outputText value="#{docenteController.selected.doColegio}" title="#{myBundle.ViewDocenteTitle_doColegio}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

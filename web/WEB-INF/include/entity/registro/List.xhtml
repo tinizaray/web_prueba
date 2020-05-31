@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="RegistroListForm">
+
+        <p:panel header="#{myBundle.ListRegistroTitle}">
+            <p:contextMenu id="RegistroDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('RegistroListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('RegistroListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('RegistroListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('RegistroListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.RegistroMenuItem_alumnos}" icon="ui-icon-search"  actionListener="#{registroController.prepareAlumnos}" update=":AlumnosViewForm" oncomplete="PF('AlumnosViewDialog').show()" disabled="#{empty registroController.selected.alumnos}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_curso}" icon="ui-icon-search"  actionListener="#{registroController.prepareCurso}" update=":CursoViewForm" oncomplete="PF('CursoViewDialog').show()" disabled="#{empty registroController.selected.curso}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_docente}" icon="ui-icon-search"  actionListener="#{registroController.prepareDocente}" update=":DocenteViewForm" oncomplete="PF('DocenteViewDialog').show()" disabled="#{empty registroController.selected.docente}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_insumos}" icon="ui-icon-search"  actionListener="#{registroController.prepareInsumos}" update=":InsumosViewForm" oncomplete="PF('InsumosViewDialog').show()" disabled="#{empty registroController.selected.insumos}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_materias}" icon="ui-icon-search"  actionListener="#{registroController.prepareMaterias}" update=":MateriasViewForm" oncomplete="PF('MateriasViewDialog').show()" disabled="#{empty registroController.selected.materias}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_parciales}" icon="ui-icon-search"  actionListener="#{registroController.prepareParciales}" update=":ParcialesViewForm" oncomplete="PF('ParcialesViewDialog').show()" disabled="#{empty registroController.selected.parciales}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_quimestre}" icon="ui-icon-search"  actionListener="#{registroController.prepareQuimestre}" update=":QuimestreViewForm" oncomplete="PF('QuimestreViewDialog').show()" disabled="#{empty registroController.selected.quimestre}"/>  
+                <p:menuitem value="#{myBundle.RegistroMenuItem_unidad}" icon="ui-icon-search"  actionListener="#{registroController.prepareUnidad}" update=":UnidadViewForm" oncomplete="PF('UnidadViewDialog').show()" disabled="#{empty registroController.selected.unidad}"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{registroController.items}"
+                         lazy="false"
+                         rowKey="#{item.registroPK}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{registroController.selected}"
+                         filteredValue="#{registroController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{registroController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.registroPK}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:RegistroDataTableContextMenu" listener="#{registroController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:RegistroDataTableContextMenu" listener="#{registroController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{registroController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('RegistroListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.registroPK.reId}" filterBy="#{item.registroPK.reId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_reId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.registroPK.reId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.registroPK.maId}" filterBy="#{item.registroPK.maId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_maId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.registroPK.maId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.registroPK.alId}" filterBy="#{item.registroPK.alId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_alId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.registroPK.alId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.registroPK.curId}" filterBy="#{item.registroPK.curId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_curId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.registroPK.curId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.registroPK.unId}" filterBy="#{item.registroPK.unId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_unId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.registroPK.unId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.registroPK.doId}" filterBy="#{item.registroPK.doId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_doId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.registroPK.doId}"/>
+                </p:column>
+
+                <ui:remove>
+                    <p:column sortBy="#{item.registroPK.quiId}" filterBy="#{item.registroPK.quiId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_quiId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.registroPK.quiId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.registroPK.paId}" filterBy="#{item.registroPK.paId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_paId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.registroPK.paId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.registroPK.inId}" filterBy="#{item.registroPK.inId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_registroPK_inId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.registroPK.inId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.reNota}" filterBy="#{item.reNota}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_reNota}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.reNota}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.alumnos.alId}" filterBy="#{item.alumnos.alId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_alumnos}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.alumnos.alId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.curso.curId}" filterBy="#{item.curso.curId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_curso}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.curso.curId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.docente.doId}" filterBy="#{item.docente.doId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_docente}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.docente.doId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.insumos.inId}" filterBy="#{item.insumos.inId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_insumos}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.insumos.inId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.materias.maId}" filterBy="#{item.materias.maId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_materias}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.materias.maId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.parciales.paId}" filterBy="#{item.parciales.paId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_parciales}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.parciales.paId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.quimestre.quiId}" filterBy="#{item.quimestre.quiId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_quimestre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.quimestre.quiId}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.unidad.unId}" filterBy="#{item.unidad.unId}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListRegistroTitle_unidad}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.unidad.unId}"/>
+                    </p:column>
+                </ui:remove>
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{registroController.prepareCreate}" update=":RegistroCreateForm" oncomplete="PF('RegistroCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":RegistroViewForm" oncomplete="PF('RegistroViewDialog').show()" disabled="#{empty registroController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":RegistroEditForm" oncomplete="PF('RegistroEditDialog').show()" disabled="#{empty registroController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{registroController.delete}" update=":growl,datalist" disabled="#{empty registroController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

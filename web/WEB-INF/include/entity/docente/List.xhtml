@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DocenteListForm">
+
+        <p:panel header="#{myBundle.ListDocenteTitle}">
+            <p:contextMenu id="DocenteDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('DocenteListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('DocenteListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('DocenteListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('DocenteListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.DocenteMenuItem_registroCollection}" icon="ui-icon-search"  action="#{docenteController.navigateRegistroCollection}" disabled="#{docenteController.isRegistroCollectionEmpty}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{docenteController.items}"
+                         lazy="false"
+                         rowKey="#{item.doId}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{docenteController.selected}"
+                         filteredValue="#{docenteController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{docenteController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.doId}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:DocenteDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:DocenteDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('DocenteListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.doId}" filterBy="#{item.doId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_doId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.doId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.doCedula}" filterBy="#{item.doCedula}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_doCedula}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.doCedula}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.doNombres}" filterBy="#{item.doNombres}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_doNombres}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.doNombres}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.doApellidos}" filterBy="#{item.doApellidos}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_doApellidos}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.doApellidos}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.doProv}" filterBy="#{item.doProv}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_doProv}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.doProv}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.doCiudad}" filterBy="#{item.doCiudad}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDocenteTitle_doCiudad}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.doCiudad}"/>
+                </p:column>
+
+                <ui:remove>
+                    <p:column sortBy="#{item.doDirec}" filterBy="#{item.doDirec}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListDocenteTitle_doDirec}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.doDirec}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.doTelef}" filterBy="#{item.doTelef}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListDocenteTitle_doTelef}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.doTelef}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.doMobil}" filterBy="#{item.doMobil}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListDocenteTitle_doMobil}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.doMobil}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.doUsu}" filterBy="#{item.doUsu}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListDocenteTitle_doUsu}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.doUsu}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.doPass}" filterBy="#{item.doPass}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListDocenteTitle_doPass}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.doPass}"/>
+                    </p:column>
+                </ui:remove>
+                <ui:remove>
+                    <p:column sortBy="#{item.doColegio}" filterBy="#{item.doColegio}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListDocenteTitle_doColegio}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.doColegio}"/>
+                    </p:column>
+                </ui:remove>
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{docenteController.prepareCreate}" update=":DocenteCreateForm" oncomplete="PF('DocenteCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":DocenteViewForm" oncomplete="PF('DocenteViewDialog').show()" disabled="#{empty docenteController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DocenteEditForm" oncomplete="PF('DocenteEditDialog').show()" disabled="#{empty docenteController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{docenteController.delete}" update=":growl,datalist" disabled="#{empty docenteController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

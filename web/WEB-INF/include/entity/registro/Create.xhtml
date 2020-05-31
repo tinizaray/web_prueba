@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistroCreateDlg" widgetVar="RegistroCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateRegistroTitle}" closeOnEscape="true">
+
+            <h:form id="RegistroCreateForm">
+
+                <h:panelGroup id="display" rendered="#{registroController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_reId}" for="registroPK_reId" />
+                        <p:inputText id="registroPK_reId" value="#{registroController.selected.registroPK.reId}" title="#{myBundle.CreateRegistroTitle_registroPK_reId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_reId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_maId}" for="registroPK_maId" />
+                        <p:inputText id="registroPK_maId" value="#{registroController.selected.registroPK.maId}" title="#{myBundle.CreateRegistroTitle_registroPK_maId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_maId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_alId}" for="registroPK_alId" />
+                        <p:inputText id="registroPK_alId" value="#{registroController.selected.registroPK.alId}" title="#{myBundle.CreateRegistroTitle_registroPK_alId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_alId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_curId}" for="registroPK_curId" />
+                        <p:inputText id="registroPK_curId" value="#{registroController.selected.registroPK.curId}" title="#{myBundle.CreateRegistroTitle_registroPK_curId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_curId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_unId}" for="registroPK_unId" />
+                        <p:inputText id="registroPK_unId" value="#{registroController.selected.registroPK.unId}" title="#{myBundle.CreateRegistroTitle_registroPK_unId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_unId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_doId}" for="registroPK_doId" />
+                        <p:inputText id="registroPK_doId" value="#{registroController.selected.registroPK.doId}" title="#{myBundle.CreateRegistroTitle_registroPK_doId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_doId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_quiId}" for="registroPK_quiId" />
+                        <p:inputText id="registroPK_quiId" value="#{registroController.selected.registroPK.quiId}" title="#{myBundle.CreateRegistroTitle_registroPK_quiId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_quiId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_paId}" for="registroPK_paId" />
+                        <p:inputText id="registroPK_paId" value="#{registroController.selected.registroPK.paId}" title="#{myBundle.CreateRegistroTitle_registroPK_paId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_paId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_registroPK_inId}" for="registroPK_inId" />
+                        <p:inputText id="registroPK_inId" value="#{registroController.selected.registroPK.inId}" title="#{myBundle.CreateRegistroTitle_registroPK_inId}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_registroPK_inId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_reNota}" for="reNota" />
+                        <p:inputText id="reNota" value="#{registroController.selected.reNota}" title="#{myBundle.CreateRegistroTitle_reNota}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_reNota}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_alumnos}" for="alumnos" />
+                        <p:selectOneMenu id="alumnos" value="#{registroController.selected.alumnos}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_alumnos}" converter="alumnosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{alumnosController.items}"
+                                           var="alumnosItem"
+                                           itemValue="#{alumnosItem}"
+                                           itemLabel="#{alumnosItem.alId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_curso}" for="curso" />
+                        <p:selectOneMenu id="curso" value="#{registroController.selected.curso}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_curso}" converter="cursoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{cursoController.items}"
+                                           var="cursoItem"
+                                           itemValue="#{cursoItem}"
+                                           itemLabel="#{cursoItem.curId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_docente}" for="docente" />
+                        <p:selectOneMenu id="docente" value="#{registroController.selected.docente}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_docente}" converter="docenteConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{docenteController.items}"
+                                           var="docenteItem"
+                                           itemValue="#{docenteItem}"
+                                           itemLabel="#{docenteItem.doId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_insumos}" for="insumos" />
+                        <p:selectOneMenu id="insumos" value="#{registroController.selected.insumos}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_insumos}" converter="insumosConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{insumosController.items}"
+                                           var="insumosItem"
+                                           itemValue="#{insumosItem}"
+                                           itemLabel="#{insumosItem.inId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_materias}" for="materias" />
+                        <p:selectOneMenu id="materias" value="#{registroController.selected.materias}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_materias}" converter="materiasConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiasController.items}"
+                                           var="materiasItem"
+                                           itemValue="#{materiasItem}"
+                                           itemLabel="#{materiasItem.maId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_parciales}" for="parciales" />
+                        <p:selectOneMenu id="parciales" value="#{registroController.selected.parciales}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_parciales}" converter="parcialesConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{parcialesController.items}"
+                                           var="parcialesItem"
+                                           itemValue="#{parcialesItem}"
+                                           itemLabel="#{parcialesItem.paId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_quimestre}" for="quimestre" />
+                        <p:selectOneMenu id="quimestre" value="#{registroController.selected.quimestre}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_quimestre}" converter="quimestreConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{quimestreController.items}"
+                                           var="quimestreItem"
+                                           itemValue="#{quimestreItem}"
+                                           itemLabel="#{quimestreItem.quiId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateRegistroLabel_unidad}" for="unidad" />
+                        <p:selectOneMenu id="unidad" value="#{registroController.selected.unidad}" required="true" requiredMessage="#{myBundle.CreateRegistroRequiredMessage_unidad}" converter="unidadConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{unidadController.items}"
+                                           var="unidadItem"
+                                           itemValue="#{unidadItem}"
+                                           itemLabel="#{unidadItem.unId.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{registroController.saveNew}" value="#{myBundle.Save}" update="display,:RegistroListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('RegistroCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('RegistroCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

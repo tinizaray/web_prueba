@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocenteViewDlg" widgetVar="DocenteViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewDocenteTitle}" closeOnEscape="true">
+
+            <h:form id="DocenteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{docenteController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doId}"/>
+                        <h:outputText value="#{docenteController.selected.doId}" title="#{myBundle.ViewDocenteTitle_doId}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doCedula}"/>
+                        <h:outputText value="#{docenteController.selected.doCedula}" title="#{myBundle.ViewDocenteTitle_doCedula}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doNombres}"/>
+                        <h:outputText value="#{docenteController.selected.doNombres}" title="#{myBundle.ViewDocenteTitle_doNombres}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doApellidos}"/>
+                        <h:outputText value="#{docenteController.selected.doApellidos}" title="#{myBundle.ViewDocenteTitle_doApellidos}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doProv}"/>
+                        <h:outputText value="#{docenteController.selected.doProv}" title="#{myBundle.ViewDocenteTitle_doProv}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doCiudad}"/>
+                        <h:outputText value="#{docenteController.selected.doCiudad}" title="#{myBundle.ViewDocenteTitle_doCiudad}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doDirec}"/>
+                        <h:outputText value="#{docenteController.selected.doDirec}" title="#{myBundle.ViewDocenteTitle_doDirec}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doTelef}"/>
+                        <h:outputText value="#{docenteController.selected.doTelef}" title="#{myBundle.ViewDocenteTitle_doTelef}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doMobil}"/>
+                        <h:outputText value="#{docenteController.selected.doMobil}" title="#{myBundle.ViewDocenteTitle_doMobil}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doUsu}"/>
+                        <h:outputText value="#{docenteController.selected.doUsu}" title="#{myBundle.ViewDocenteTitle_doUsu}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doPass}"/>
+                        <h:outputText value="#{docenteController.selected.doPass}" title="#{myBundle.ViewDocenteTitle_doPass}"/>
+
+                        <h:outputText value="#{myBundle.ViewDocenteLabel_doColegio}"/>
+                        <h:outputText value="#{docenteController.selected.doColegio}" title="#{myBundle.ViewDocenteTitle_doColegio}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('DocenteViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UnidadViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewUnidadTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UnidadListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UnidadViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{unidadController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUnidadLabel_unId}"/>
+                            <h:outputText value="#{unidadController.selected.unId}" title="#{myBundle.ViewUnidadTitle_unId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUnidadLabel_unNombre}"/>
+                            <h:outputText value="#{unidadController.selected.unNombre}" title="#{myBundle.ViewUnidadTitle_unNombre}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUnidadLabel_unDireccion}"/>
+                            <h:outputText value="#{unidadController.selected.unDireccion}" title="#{myBundle.ViewUnidadTitle_unDireccion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUnidadLabel_unPeriodo}"/>
+                            <h:outputText value="#{unidadController.selected.unPeriodo}" title="#{myBundle.ViewUnidadTitle_unPeriodo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewUnidadLabel_unTelef}"/>
+                            <h:outputText value="#{unidadController.selected.unTelef}" title="#{myBundle.ViewUnidadTitle_unTelef}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

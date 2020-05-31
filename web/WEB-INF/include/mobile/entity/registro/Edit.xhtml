@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="RegistroEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditRegistroTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:RegistroListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="RegistroEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{registroController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_reId}" for="registroPK_reId" />
+                            <h:outputText id="registroPK_reId" value="#{registroController.selected.registroPK.reId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_maId}" for="registroPK_maId" />
+                            <h:outputText id="registroPK_maId" value="#{registroController.selected.registroPK.maId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_alId}" for="registroPK_alId" />
+                            <h:outputText id="registroPK_alId" value="#{registroController.selected.registroPK.alId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_curId}" for="registroPK_curId" />
+                            <h:outputText id="registroPK_curId" value="#{registroController.selected.registroPK.curId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_unId}" for="registroPK_unId" />
+                            <h:outputText id="registroPK_unId" value="#{registroController.selected.registroPK.unId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_doId}" for="registroPK_doId" />
+                            <h:outputText id="registroPK_doId" value="#{registroController.selected.registroPK.doId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_quiId}" for="registroPK_quiId" />
+                            <h:outputText id="registroPK_quiId" value="#{registroController.selected.registroPK.quiId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_paId}" for="registroPK_paId" />
+                            <h:outputText id="registroPK_paId" value="#{registroController.selected.registroPK.paId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_registroPK_inId}" for="registroPK_inId" />
+                            <h:outputText id="registroPK_inId" value="#{registroController.selected.registroPK.inId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditRegistroLabel_reNota}" for="reNota" />
+                            <p:inputText id="reNota" value="#{registroController.selected.reNota}" title="#{myBundle.EditRegistroTitle_reNota}" required="true" requiredMessage="#{myBundle.EditRegistroRequiredMessage_reNota}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_alumnos}" for="alumnos" />
+                            <h:outputText id="alumnos" value="#{registroController.selected.alumnos}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_curso}" for="curso" />
+                            <h:outputText id="curso" value="#{registroController.selected.curso}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_docente}" for="docente" />
+                            <h:outputText id="docente" value="#{registroController.selected.docente}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_insumos}" for="insumos" />
+                            <h:outputText id="insumos" value="#{registroController.selected.insumos}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_materias}" for="materias" />
+                            <h:outputText id="materias" value="#{registroController.selected.materias}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_parciales}" for="parciales" />
+                            <h:outputText id="parciales" value="#{registroController.selected.parciales}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_quimestre}" for="quimestre" />
+                            <h:outputText id="quimestre" value="#{registroController.selected.quimestre}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditRegistroLabel_unidad}" for="unidad" />
+                            <h:outputText id="unidad" value="#{registroController.selected.unidad}" />
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{registroController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:RegistroListPage:RegistroListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:RegistroListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

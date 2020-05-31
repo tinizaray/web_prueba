@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="QuimestreViewDlg" widgetVar="QuimestreViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewQuimestreTitle}" closeOnEscape="true">
+
+            <h:form id="QuimestreViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{quimestreController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewQuimestreLabel_quiId}"/>
+                        <h:outputText value="#{quimestreController.selected.quiId}" title="#{myBundle.ViewQuimestreTitle_quiId}"/>
+
+                        <h:outputText value="#{myBundle.ViewQuimestreLabel_quiNombre}"/>
+                        <h:outputText value="#{quimestreController.selected.quiNombre}" title="#{myBundle.ViewQuimestreTitle_quiNombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('QuimestreViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ParcialesEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditParcialesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ParcialesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ParcialesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{parcialesController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditParcialesLabel_paId}" for="paId" />
+                            <h:outputText id="paId" value="#{parcialesController.selected.paId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditParcialesLabel_paNombres}" for="paNombres" />
+                            <p:inputText id="paNombres" value="#{parcialesController.selected.paNombres}" title="#{myBundle.EditParcialesTitle_paNombres}" size="45" maxlength="45"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{parcialesController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ParcialesListPage:ParcialesListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ParcialesListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

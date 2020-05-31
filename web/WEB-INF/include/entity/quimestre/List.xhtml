@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="QuimestreListForm">
+
+        <p:panel header="#{myBundle.ListQuimestreTitle}">
+            <p:contextMenu id="QuimestreDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('QuimestreListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('QuimestreListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('QuimestreListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('QuimestreListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.QuimestreMenuItem_registroCollection}" icon="ui-icon-search"  action="#{quimestreController.navigateRegistroCollection}" disabled="#{quimestreController.isRegistroCollectionEmpty}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{quimestreController.items}"
+                         lazy="false"
+                         rowKey="#{item.quiId}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{quimestreController.selected}"
+                         filteredValue="#{quimestreController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{quimestreController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.quiId}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:QuimestreDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:QuimestreDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('QuimestreListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.quiId}" filterBy="#{item.quiId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListQuimestreTitle_quiId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quiId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.quiNombre}" filterBy="#{item.quiNombre}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListQuimestreTitle_quiNombre}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quiNombre}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{quimestreController.prepareCreate}" update=":QuimestreCreateForm" oncomplete="PF('QuimestreCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":QuimestreViewForm" oncomplete="PF('QuimestreViewDialog').show()" disabled="#{empty quimestreController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":QuimestreEditForm" oncomplete="PF('QuimestreEditDialog').show()" disabled="#{empty quimestreController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{quimestreController.delete}" update=":growl,datalist" disabled="#{empty quimestreController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>
